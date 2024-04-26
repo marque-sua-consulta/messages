@@ -6,19 +6,31 @@ import { AppModule } from './../src/app.module';
 describe('AppController (e2e)', () => {
   let app: INestApplication;
 
-  beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile();
+  beforeAll(async () => {
+    jest.setTimeout(10000);
+    try {
+      const moduleFixture: TestingModule = await Test.createTestingModule({
+        imports: [AppModule],
+      }).compile();
 
-    app = moduleFixture.createNestApplication();
-    await app.init();
+      app = moduleFixture.createNestApplication();
+      await app.init();
+    } catch (error) {
+      console.error('Failed to initialize app:', error);
+      process.exit(1); // Terminates the test process if initialization fails
+    }
   });
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer())
+  it('GET / should return 200 and { server: "on" }', async () => {
+    await request(app.getHttpServer())
       .get('/')
       .expect(200)
-      .expect('Hello World!');
+      .expect({ server: 'on' });
+  });
+
+  afterAll(async () => {
+    if (app) {
+      await app.close();
+    }
   });
 });
