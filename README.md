@@ -21,7 +21,7 @@ $ npm install
 Before you begin running the application, ensure you have MongoDB installed. If you don't have MongoDB installed yet, you can easily set it up using Docker and Docker Compose. Navigate to the project repository and run the following command:
 
 ```bash
-docker compose up
+docker compose up mongo-db
 ```
 After setting up MongoDB, you can proceed with running the application using the following commands:
 
