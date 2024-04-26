@@ -101,12 +101,10 @@ curl -X POST http://localhost:3000/messages -H "Content-Type: application/json" 
 ### Get Messages
 ```bash
 curl http://localhost:3000/messages?limit=10&offset=0
-
 ```
 ### Get a Single Message
 ```bash
 curl http://localhost:3000/messages/507f1f77bcf86cd799439011
-
 ```
 ### Mark a Message as Read
 ```bash
@@ -129,4 +127,3 @@ $ npm run test:cov
 ## License
 
 Nest is [MIT licensed](LICENSE).
-# messages
