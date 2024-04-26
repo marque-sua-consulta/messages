@@ -9,6 +9,17 @@ services:
     environment:
       MONGODB_DATABASE: messages
 
+  test-mongo-db:
+    image: mongo
+    restart: always
+    ports:
+      - 27018:27017
+    environment:
+      MONGODB_DATABASE: messages
+      DATABASE_PORT: 27018 
+    entrypoint: ["echo", "Test MongoDB is running. This container is for testing purposes only. It should not be used in production."]
+    command: ["tail", "-f", "/dev/null"] # Mantém o contêiner em execução indefinidamente
+
   app:
       build:
         context: .
