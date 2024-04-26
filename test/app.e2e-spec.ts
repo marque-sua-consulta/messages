@@ -28,6 +28,11 @@ describe('AppController (e2e)', () => {
       .expect({ server: 'on' });
   });
 
+  it.todo('Create Message [POST /messages]');
+  it.todo('Get all [GET /messages]');
+  it.todo('Get one [GET /messages/:id]');
+  it.todo('Mark as Read one [PATCH /messages/:id/read]');
+
   afterAll(async () => {
     if (app) {
       await app.close();
