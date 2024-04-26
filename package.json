@@ -23,8 +23,8 @@
     "pretest:cov": "export DATABASE_PORT=27018 && docker compose up -d test-mongo-db",
     "posttest:cov": "docker compose stop test-mongo-db && docker compose rm -f test-mongo-db",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "pretest:e2e": "export DATABASE_PORT=27018 && docker compose up -d test-mongo-db",
-    "posttest:e2e": "docker compose stop test-mongo-db && docker compose rm -f test-mongo-db",
+    "pretest:e2e": "export DATABASE_PORT=27018 && docker compose -f ./test/docker-compose.test.yml up -d test-mongo-db",
+    "posttest:e2e": "docker compose -f ./test/docker-compose.test.yml stop test-mongo-db && docker compose -f ./test/docker-compose.test.yml rm -f test-mongo-db",
     "test:e2e": "export DATABASE_PORT=27018 && jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
