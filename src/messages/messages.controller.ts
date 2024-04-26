@@ -8,7 +8,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { MessagesService } from './messages.service';
-import { ApiOkResponse, ApiQuery } from '@nestjs/swagger';
+import { ApiQuery, ApiResponse } from '@nestjs/swagger';
 import { CreateMessageDto } from './dto/create-message.dto';
 import { MessagePaginationWrapperDTO } from './dto/pagination-message-wrapper.dto';
 import { Message } from './entities/message.entity';
@@ -18,6 +18,7 @@ export class MessagesController {
   constructor(private readonly messagesService: MessagesService) {}
 
   @Post()
+  @ApiResponse({ description: 'Created Mensagem', type: Message })
   create(@Body() createMessageDto: CreateMessageDto) {
     return this.messagesService.create(createMessageDto);
   }
@@ -47,7 +48,7 @@ export class MessagesController {
     type: Number,
     description: 'Paginação de mensagens retornadas',
   })
-  @ApiOkResponse({ description: 'Lista de mensagens', type: [Message] })
+  @ApiResponse({ description: 'Lista de mensagens', type: [Message] })
   findAll(@Query() queryWrapperDto: MessagePaginationWrapperDTO) {
     return this.messagesService.findAll(queryWrapperDto);
   }
@@ -59,7 +60,7 @@ export class MessagesController {
     type: String,
     description: 'ID da mensagem no MongoDB',
   })
-  @ApiOkResponse({ description: 'Mensagem', type: Message })
+  @ApiResponse({ description: 'Mensagem', type: Message })
   findOne(@Param('id') id: string) {
     return this.messagesService.findOne(id);
   }
@@ -71,11 +72,11 @@ export class MessagesController {
     type: String,
     description: 'ID da mensagem no MongoDB',
   })
-  @ApiOkResponse({
+  @ApiResponse({
     description: 'Mensagem com o parâmetro messageRead true',
     type: Message,
   })
-  update(@Param('id') id: string) {
+  markAsRead(@Param('id') id: string) {
     return this.messagesService.markAsRead(id);
   }
 }

@@ -25,7 +25,6 @@ export class MessagesService {
     }
 
     const { limit, offset } = queryWrapperDto;
-    // Aqui você construiria a query de acordo com os parâmetros recebidos
     return this.messageModel
       .find({ ...filtros })
       .skip(offset)
