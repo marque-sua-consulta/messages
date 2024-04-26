@@ -23,6 +23,15 @@ Before you begin running the application, ensure you have MongoDB installed. If 
 ```bash
 docker compose up mongo-db
 ```
+
+create on root directory one .env with the following parameter:
+
+```env
+  DATABASE_NAME=messages
+  DATABASE_PORT=27017
+  DATABASE_HOST=localhost
+```
+
 After setting up MongoDB, you can proceed with running the application using the following commands:
 
 ```bash
