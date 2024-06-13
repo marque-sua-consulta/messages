@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
 import * as request from 'supertest';
-import { AppModule } from './../../src/app.module';
+import { AppModule } from '../../src/app.module';
 import { MessagesModule } from '../../src/messages/messages.module';
 import { CreateMessageDto } from '../../src/messages/dto/create-message.dto';
 import { UpdateMessageDto } from 'src/messages/dto/update-message.dto';
