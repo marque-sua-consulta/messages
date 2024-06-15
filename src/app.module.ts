@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MessagesModule } from './messages/messages.module';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from '@hapi/joi';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { RequestLoggerInterceptor } from './common/interceptor/request-logger.interceptor';
 
 @Module({
   imports: [
@@ -19,7 +19,12 @@ import * as Joi from '@hapi/joi';
     ),
     MessagesModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: RequestLoggerInterceptor,
+    },
+  ],
 })
 export class AppModule {}

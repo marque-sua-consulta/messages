@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { CreateMessageDto } from './dto/create-message.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Message } from './entities/message.entity';
@@ -11,6 +11,7 @@ export class MessagesService {
   ) {}
 
   create(createMessageDto: CreateMessageDto) {
+    Logger.debug(createMessageDto);
     const message = new this.messageModel(createMessageDto);
     return message.save();
   }
